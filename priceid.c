@@ -33,21 +33,33 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
     }
   }
   baseprice = (int) resprice;
+  printf("Base price: %i\n", baseprice);
+  if (selling == true) {
+    printf("When you're selling, there's a 25\% chance of a lower price, so drop the item a few times and use the higher price there.");
+  }
   if (strcmp(tp, "scroll") == 0) {
     switch (baseprice) {
       case 20:
         return "That's definitely a scroll of identify!";
       case 50:
-        return "Scroll of light, yo!";
+        /* I suck at rap, eh? */
+        return "A scroll of light that shines bright,\nuntil you drop it down tonight,\nyo!";
       case 60:
-        return "That's a scroll of enchant weapon. Or blank paper. Not dangerous anyway.";
+        return "That's a scroll of enchant weapon. Or blank paper, less likely (2.8\% vs 8\% relative probability). Not dangerous anyway.";
       case 80:
-        return "Wow, a useful one. Scroll of enchant armor or remove curse.";
+        return "Wow, a useful one. Scroll of enchant armor (6.3\% relative probability) or remove curse (6.5\%).";
+      case 100:
+        return "Looks like I know what's that... One of those:\nconfuse monster (5.3\% relative probability),\ndestroy armor (4.5\%),\nfire (3\%),\nfood detection (2.5\%),\ngold detection (3.3\%),\nmagic mapping (4.5\%),\nscare monster (3.5\%),\nteleportation(5.5\%).";
+      case 200:
+        /* The Offspring reference, you got it? */
+        return "Don't pick it up, you! (unless you know what you're doing) That could be:\namnesia (3.5\% relative probability),\ncreate monster (4.5\%),\nearth (1.8\%),\ntaming (1.5\%).";
+      case 300:
+        /* relative probabilities of these are equal */
+        return "A scroll of charging, genocide, punishment or stinking cloud.";
       default:
         return "Some weird scroll...";
     }
   } else if (strcmp(tp, "potion") == 0) {
-    printf("%i", baseprice);
     switch (baseprice) {
       case 50:
         /* relative probabilities of these are equal */
@@ -63,7 +75,11 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
       case 300:
         return "There you have a potion of gain ability (4.2\% relative probability), gain level (2\%) or paralysis (4.2\%).";
       default:
-        return "An odd potion.";
+        if (baseprice < 15) {
+          return "I guess that's water.";
+        } else {
+          return "An odd potion.";
+        }
     }
   } else {
     return "I don't know anything about that kind of things. Sorry.";
