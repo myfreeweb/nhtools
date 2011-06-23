@@ -63,7 +63,7 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
     switch (baseprice) {
       case 50:
         /* relative probabilities of these are equal */
-        return "Booze, fruit juice, see invisible... good, eh? Stop, that can also be a potion of sickness! A cursed one removes up to 15 HP, uncursed - up to ten, blessed - just one. Non-blessed ones also randomly reduce one of your stats. Not so deadly, but beware. You can turn it into fruit juice by #dipping a unicorn horn into it or zapping it with a wand of cancellation (but don't waste it, really!) Dipping a missile weapon also helps by forming a coating on the potion.";
+        return "Booze, fruit juice, see invisible... good, eh? Stop, that can also be a potion of sickness! A cursed one removes up to 15 HP, uncursed - up to ten, blessed - just one. Non-blessed ones also randomly reduce one of your stats. Not so deadly, but beware. You can turn it into fruit juice by #dipping a unicorn horn into it or zapping it with a wand of cancellation (but don't waste it, really!) Dipping a missile weapon also helps: it will be poisoned after dipping. So, dip a dart. Or whatever. But not a dagger. Hey, I should stop talking. You're not listening anyway.";
       case 100:
         return "Oh, one of these:\nconfusion (4.2\% relative probability),\nextra healing (4.7\%),\nhallucination (4\%),\nhealing (5.7\%),\nholy or unholy water (1.15\%),\nrestore ability (4\%),\nsleeping(4.2\%).";
       case 150:
@@ -81,6 +81,11 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
           return "An odd potion.";
         }
     }
+  } else if (strcmp(tp, "wand") == 0) {
+    switch (baseprice) {
+      default:
+        return "A strange wand.";
+    }
   } else {
     return "I don't know anything about that kind of things. Sorry.";
   }
@@ -93,12 +98,12 @@ char *lslice(char *str, int beg) {
 }
 
 int main(int argc, char **argv) {
-  if (argc <3) {
-    printf("Usage: priceid [options] type price");
+  if (argc <3) { /* C is love... until you have to write malloc()s and stuff */
+    printf("priceid - part of the free nhtools package by myfreeweb: https://github.com/myfreeweb/nhtools\nUsage: priceid [options] type price\n\nOptions:\n-sucker - if you're a tourist with Xp level =< 14 or wearing a shirt w/o any armor/cloak over it\n-selling - if you're selling an item\n-c[your charisma] - it affects the price when *buying*\n\nSupported types: scroll, potion, wand.");
   } else {
     int i, charisma = 11, /* 11-15 is for list price */
     sucker = false, selling = false;
-    for(i=1; i < argc; i++) {
+    for (i=1; i < argc; i++) {
       if (argv[i][0] == 45) { /* minus */
         if (strcmp(argv[i], "-sucker") == 0) {
           sucker = true;
