@@ -5,6 +5,7 @@
 
 char *id(char *tp, int price, int charisma, int sucker, int selling) {
   float resprice;
+  int baseprice;
   if (selling == true) {
     if (sucker == true) {
       resprice = price / 100.0 * 3.0;
@@ -31,7 +32,25 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
       resprice = resprice * 0.5;
     }
   }
-  return "";
+  baseprice = (int) resprice;
+  if (strcmp(tp, "scroll") == 0) {
+    switch (baseprice) {
+      case 20:
+        return "That's definitely a scroll of identify!";
+      case 50:
+        return "Scroll of light, yo!";
+      case 60:
+        return "That's a scroll of enchant weapon. Or blank paper. Not dangerous anyway.";
+      case 80:
+        return "Wow, a useful one. Scroll of enchant armor or remove curse.";
+      case 1488:
+        return "Sieg Heil! That's a scroll of Nazi.";
+      default:
+        return "Some weird scroll...";
+    }
+  } else {
+    return "I don't know anything about that kind of things. Sorry.";
+  }
 }
 
 char *lslice(char *str, int beg) {
