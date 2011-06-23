@@ -35,7 +35,7 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
   baseprice = (int) resprice;
   printf("Base price: %i\n", baseprice);
   if (selling == true) {
-    printf("When you're selling, there's a 25\% chance of a lower price, so drop the item a few times and use the higher price there.");
+    puts("When you're selling, there's a 25% chance of a lower price, so drop the item a few times and use the higher price there.\n");
   }
   if (strcmp(tp, "scroll") == 0) {
     switch (baseprice) {
