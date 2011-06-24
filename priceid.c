@@ -98,6 +98,21 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
       default:
         return "A strange wand.";
     }
+  } else if (strcmp(tp, "ring") == 0) {
+    switch (baseprice) {
+      case 5:
+        return "Just a useless meat ring.";
+      case 100:
+        return "That's a ring of:\nadornment,\nhunger (90\% generated cursed, beware!),\nprotection,\nprotection from shape changers,\nstealth,\nsustain ability,\nwarning.";
+      case 150:
+        return "One of these rings:\naggravate monster (90\% generated cursed, you don't want this!),\ncold resistance,\ngain constitution,\ngain strength,\nincrease accuracy,\nincrease damage,\ninvisibility (cursed if from a Nazgul),\npoison resistance,\nsee invisible,\nshock resistance.";
+      case 200:
+        return "There you have it:\nfire resistance,\nfree action,\nlevitation,\nregeneration,\nsearching,\nslow digestion,\nteleportation (90\% generated cursed).";
+      case 300:
+        return "Ring of conflict, polymorph (90\% generated cursed), polymorph control or teleport control.";
+      default:
+        return "I don't know anything about that ring. Sorry.";
+    }
   } else {
     return "I don't know anything about that kind of things. Sorry.";
   }
@@ -111,7 +126,7 @@ char *lslice(char *str, int beg) {
 
 int main(int argc, char **argv) {
   if (argc <3) { /* C is love... until you have to write malloc()s and stuff */
-    printf("priceid - part of the free nhtools package by myfreeweb: https://github.com/myfreeweb/nhtools\nUsage: priceid [options] type price\n\nOptions:\n-sucker - if you're a tourist with Xp level =< 14 or wearing a shirt w/o any armor/cloak over it. Or a duncecap.\n-selling - if you're selling an item\n-c[your charisma] - it affects the price when *buying*\n\nSupported types: scroll, potion, wand.");
+    printf("priceid - part of the free nhtools package by myfreeweb: https://github.com/myfreeweb/nhtools\nUsage: priceid [options] type price\n\nOptions:\n-sucker - if you're a tourist with Xp level =< 14 or wearing a shirt w/o any armor/cloak over it. Or a duncecap.\n-selling - if you're selling an item\n-c[your charisma] - it affects the price when *buying*\n\nSupported types: scroll, potion, wand, ring.");
   } else {
     int i, charisma = 11, /* 11-15 is for list price */
     sucker = false, selling = false;
