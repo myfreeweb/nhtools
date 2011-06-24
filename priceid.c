@@ -83,6 +83,18 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
     }
   } else if (strcmp(tp, "wand") == 0) {
     switch (baseprice) {
+      case 100:
+        return "A wand of light (9.5\% relative probability) or a wand of nothing (2.5\%).";
+      case 150:
+        return "Yeah, that's one of these useful wands:\ndigging (5.5\% relative probability),\nenlightenment (1.5\%),\nlocking (2.5\%),\nmagic missile (5\%),\nmake invisible (4.5\%),\nopening (2.5\%),\nprobing (3\%),\nsecret door detection (5\%),\nslow monster (5\%),\nspeed monster (5\%),\nstriking (7.5\%),\nundead turning (5\%).";
+      case 175:
+        return "This is a wand of cold, fire, lightning or (more probably, 5\% vs 4\%) sleep.";
+      case 200:
+        /* relative probabilities of these are equal */
+        return "Wand of cancellation, create monster, polymorph or teleportation.";
+      case 500:
+        /* relative probabilities of these are equal */
+        return "Wow. A wand or death or a wand of wishing. Try to zap it at the shopkeeper, if it's wishing - wish for a wand of death.";
       default:
         return "A strange wand.";
     }
