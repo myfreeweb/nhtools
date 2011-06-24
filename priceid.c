@@ -8,7 +8,7 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
   int baseprice;
   if (selling == true) {
     if (sucker == true) {
-      resprice = price / 100.0 * 3.0;
+      resprice = price * 0.33;
     } else {
       resprice = price * 0.5;
     }
@@ -99,7 +99,7 @@ char *lslice(char *str, int beg) {
 
 int main(int argc, char **argv) {
   if (argc <3) { /* C is love... until you have to write malloc()s and stuff */
-    printf("priceid - part of the free nhtools package by myfreeweb: https://github.com/myfreeweb/nhtools\nUsage: priceid [options] type price\n\nOptions:\n-sucker - if you're a tourist with Xp level =< 14 or wearing a shirt w/o any armor/cloak over it\n-selling - if you're selling an item\n-c[your charisma] - it affects the price when *buying*\n\nSupported types: scroll, potion, wand.");
+    printf("priceid - part of the free nhtools package by myfreeweb: https://github.com/myfreeweb/nhtools\nUsage: priceid [options] type price\n\nOptions:\n-sucker - if you're a tourist with Xp level =< 14 or wearing a shirt w/o any armor/cloak over it. Or a duncecap.\n-selling - if you're selling an item\n-c[your charisma] - it affects the price when *buying*\n\nSupported types: scroll, potion, wand.");
   } else {
     int i, charisma = 11, /* 11-15 is for list price */
     sucker = false, selling = false;
@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
         }
       }
     }
-    printf("%s", id(argv[argc-2], atoi(argv[argc-1]), charisma, sucker, selling));
+    printf("%s\n", id(argv[argc-2], atoi(argv[argc-1]), charisma, sucker, selling));
   }
   return 0;
 }
