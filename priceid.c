@@ -126,7 +126,7 @@ char *lslice(char *str, int beg) {
 
 int main(int argc, char **argv) {
   if (argc <3) { /* C is love... until you have to write malloc()s and stuff */
-    printf("priceid - part of the free nhtools package by myfreeweb: https://github.com/myfreeweb/nhtools\nUsage: priceid [options] type price\n\nOptions:\n-sucker - if you're a tourist with Xp level =< 14 or wearing a shirt w/o any armor/cloak over it. Or a duncecap.\n-selling - if you're selling an item\n-c[your charisma] - it affects the price when *buying*\n\nSupported types: scroll, potion, wand, ring.");
+    printf("priceid - part of the free nhtools package by myfreeweb: https://github.com/myfreeweb/nhtools\nbased on info from http://nethackwiki.com\n\nUsage: priceid [options] type price\n\nOptions:\n-sucker - if you're a tourist with Xp level =< 14 or wearing a shirt w/o any armor/cloak over it. Or a duncecap.\n-selling - if you're selling an item\n-c[your charisma] - it affects the price when *buying*\n\nSupported types: scroll, potion, wand, ring.");
   } else {
     int i, charisma = 11, /* 11-15 is for list price */
     sucker = false, selling = false;
