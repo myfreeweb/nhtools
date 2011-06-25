@@ -8,9 +8,9 @@ char *id(char *tp, int price, int charisma, int sucker, int selling) {
   int baseprice;
   if (selling == true) {
     if (sucker == true) {
-      resprice = price * 0.33;
+      resprice = price * 3;
     } else {
-      resprice = price * 0.5;
+      resprice = price * 2;
     }
   } else {
     if (sucker == true) {
